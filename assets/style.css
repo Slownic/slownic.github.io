@@ -111,7 +111,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .btn.primary:hover { background: rgba(193,67,46,.22); }
 
 /* ---------- Section eyebrow ---------- */
-.section { padding: 64px 0; border-top: 1px solid var(--line-soft); }
+.section { padding: 64px 0; }
 .eyebrow { display: flex; align-items: baseline; gap: 16px; margin-bottom: 34px; }
 .eyebrow .num { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: .08em; }
 .eyebrow .label { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--paper); }
@@ -161,8 +161,8 @@ footer.section { border-top: 1px solid var(--line-soft); }
 .end-mark { text-align: center; font-family: var(--mono); font-size: 11px; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; }
 
 /* ---------- Case study pages ---------- */
-.case-hero { padding: 56px 0 48px; }
-.case-body { padding-top: 24px; }
+.case-hero { padding-top: 40px;}
+.case-body { padding-top: 0px; }
 .case-body h4 {
   font-family: var(--mono); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
   margin: 0 0 16px;
