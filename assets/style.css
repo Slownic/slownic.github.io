@@ -164,7 +164,7 @@ footer.section { border-top: 1px solid var(--line-soft); }
 .case-hero { padding: 56px 0 48px; }
 .case-body h4 {
   font-family: var(--mono); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
-  margin: 0 0 16px;
+  margin: 0 0 10px;
 }
 .case-body .lede { font-size: 18px; max-width: 68ch; margin: 0 0 46px; }
 .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-bottom: 46px; }
