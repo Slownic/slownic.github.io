@@ -178,16 +178,44 @@ footer.section { border-top: 1px solid var(--line-soft); }
   font-family: var(--mono); font-size: 12.5px; color: var(--muted); letter-spacing: .04em; margin-bottom: 46px;
 }
 
+/* ---------- Carousel (mixed image / YouTube slides) ---------- */
+.carousel {
+  position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 2px; background: var(--bg-alt); margin-bottom: 40px;
+}
+.carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .7s ease; }
+.carousel-slide.active { opacity: 1; z-index: 1; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-slide iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.carousel-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
+.carousel-dots button {
+  width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--paper); background: transparent;
+  padding: 0; cursor: pointer; opacity: .55;
+}
+.carousel-dots button.active { background: var(--accent); border-color: var(--accent); opacity: 1; }
+
+/* ---------- Single video embed (used standalone, e.g. showcase grid) ---------- */
 .video-embed {
   position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;
-  border: 1px solid var(--line); border-radius: 2px; background: var(--bg-alt); margin-bottom: 12px;
+  border: 1px solid var(--line); border-radius: 2px; background: var(--bg-alt);
 }
 .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-.fig-caption {
-  font-family: var(--mono); font-size: 12px; letter-spacing: .04em; color: var(--muted);
-  text-align: center; margin: 0 0 46px;
+
+/* ---------- Showcase grid (archive of older titles) ---------- */
+.showcase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+.showcase-item .video-embed { margin-bottom: 10px; }
+.showcase-item h5 { font-family: var(--mono); font-size: 14.5px; margin: 0; color: var(--paper); letter-spacing: .01em; }
+@media (max-width: 640px) { .showcase-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Hero photo ---------- */
+.hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; flex-wrap: wrap; }
+.hero-text { flex: 1; min-width: 280px; }
+.hero-photo {
+  width: 176px; height: 176px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+  border: 2px solid var(--line); background: var(--bg-alt);
 }
-.title-block .video-embed { margin-top: 14px; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 640px) { .hero-photo { width: 120px; height: 120px; } }
 
 .stat-row { display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 20px; }
 .stat-row div { padding: 0 30px 0 0; margin-right: 30px; border-right: 1px solid var(--line); }
