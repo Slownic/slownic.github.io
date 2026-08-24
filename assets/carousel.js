@@ -1,6 +1,5 @@
 // Auto-advancing, looping carousel. Supports mixed <img> and YouTube <iframe> slides.
-// Videos are embedded with autoplay/mute/loop params, so they're already playing
-// whenever their slide becomes active — no extra wiring needed here.
+// Supporta anche la navigazione con le frecce della tastiera (Sinistra / Destra).
 document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -34,6 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
       slides[index].classList.add('active');
       if (dots[index]) dots[index].classList.add('active');
     }
+
+    // AGGIUNTA: Ascolta la tastiera per muovere le slide
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        goTo(index - 1); // Freccia Sinistra -> Precedente
+      } else if (e.key === 'ArrowRight') {
+        goTo(index + 1); // Freccia Destra -> Successiva
+      }
+    });
 
     if (!reduceMotion && slides.length > 1) {
       let timer = setInterval(() => goTo(index + 1), interval);
