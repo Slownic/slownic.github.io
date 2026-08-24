@@ -186,7 +186,15 @@ footer.section { border-top: 1px solid var(--line-soft); }
 }
 .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .7s ease; }
 .carousel-slide.active { opacity: 1; z-index: 1; }
-.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* MODIFICA: Questo impedisce alle immagini verticali di zoommare e deformarsi */
+.carousel-slide img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
+  display: block; 
+}
+
 .carousel-slide iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 .carousel-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
 .carousel-dots button {
