@@ -1,5 +1,5 @@
 // Auto-advancing, looping carousel. Supports mixed <img> and YouTube <iframe> slides.
-// Supporta navigazione da tastiera e gesture swipe su dispositivi mobile.
+// Supporta navigazione da tastiera e gesture swipe ottimizzata per mobile.
 document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -43,22 +43,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // AGGIUNTA: Gestione dello Swipe su Mobile
+    // CORREZIONE: Gestione dello Swipe su Mobile stabile
     let touchStartX = 0;
-    let touchEndX = 0;
+    let touchStartY = 0;
 
     carousel.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
     }, { passive: true });
+
+    carousel.addEventListener('touchmove', (e) => {
+      // Calcola lo spostamento orizzontale e verticale
+      const xDiff = Math.abs(e.touches[0].clientX - touchStartX);
+      const yDiff = Math.abs(e.touches[0].clientY - touchStartY);
+
+      // Se l'utente sta muovendo il dito più in orizzontale che in verticale,
+      // significa che vuole fare uno swipe e non scrollare la pagina.
+      if (xDiff > yDiff) {
+        if (e.cancelable) e.preventDefault(); // Impedisce alla pagina di oscillare
+      }
+    }, { passive: false }); // Deve essere false per permettere il preventDefault
 
     carousel.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
+      const touchEndX = e.changedTouches[0].clientX;
       const swipeDistance = touchEndX - touchStartX;
-      const minSwipeThreshold = 50; // Distanza minima in pixel per attivare lo swipe
+      const minSwipeThreshold = 40; // Ridotta leggermente la distanza per renderlo più sensibile
 
       if (Math.abs(swipeDistance) > minSwipeThreshold) {
         if (swipeDistance > 0) {
@@ -69,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
           goTo(index + 1);
         }
       }
-    }
+    }, { passive: true });
 
     if (!reduceMotion && slides.length > 1) {
       let timer = setInterval(() => goTo(index + 1), interval);
