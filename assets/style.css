@@ -232,7 +232,9 @@ footer.section { border-top: 1px solid var(--line-soft); }
 .stat-row .n { display: block; font-family: var(--mono); font-weight: 700; font-size: 30px; color: var(--paper); }
 .stat-row .l { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .pub-line { font-family: var(--mono); font-size: 13.5px; color: var(--fg); margin-bottom: 46px; }
-
+.video-embed.portrait-video {
+  padding-bottom: 177.78%; /* Proporzione verticale 9:16 */
+}
 .titles-list { display: flex; flex-direction: column; gap: 30px; margin-bottom: 10px; }
 .title-block h5 { font-family: var(--mono); font-size: 17px; margin: 0 0 6px; color: var(--paper); }
 .title-block p { margin: 0; font-size: 15.5px; color: var(--fg); }
